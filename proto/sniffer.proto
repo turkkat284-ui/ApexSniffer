@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package apexsniffer;
+
+option go_package = "./pb";
+
+service PacketStreamer {
+  // Streams batches of packets from Rust-core to Go-analyzer
+  rpc StreamPackets(stream PacketBatch) returns (StreamResponse) {}
+}
+
+message Packet {
+  uint64 timestamp_ns = 1; // Nanoseconds since epoch
+  uint32 interface_id = 2; // ID of the capturing interface
+  uint32 packet_length = 3; // Length of the raw payload
+  bytes payload = 4;       // Raw packet bytes
+}
+
+message PacketBatch {
+  repeated Packet packets = 1;
+}
+
+message StreamResponse {
+  bool success = 1;
+  string message = 2;
+}

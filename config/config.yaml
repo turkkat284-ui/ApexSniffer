@@ -1,0 +1,25 @@
+# ApexSniffer Configuration
+
+# General Settings
+app_name: "ApexSniffer"
+version: "1.0.0"
+
+# Capture Settings
+capture:
+  interface: "eth0"          # Change to your NIC (e.g., \device\npcap\...)
+  bpf_filter: "tcp port 80"    # Standard BPF filter syntax
+  promiscuous_mode: true
+  snapshot_len: 65535
+
+# IPC Settings
+ipc:
+  pipe_name: "\\\\.\\pipe\\apex_sniffer" # Windows Named Pipe
+  unix_socket: "/tmp/apex_sniffer.sock"   # Linux UDS
+  buffer_size_mb: 128
+
+# Analysis Settings
+analyzer:
+  log_level: "info"
+  output_format: "json"        # options: json, parquet, csv
+  output_path: "logs/traffic.log"
+  max_workers: 8               # Go routine count for parallel decoding

@@ -1,0 +1,8 @@
+{
+  "bpf_filter": "udp",
+  "ipc_path_windows": "\\\\.\\pipe\\apex_sniffer",
+  "ipc_path_unix": "/tmp/apex_sniffer.sock",
+  "analyzer_port_min": 10000,
+  "analyzer_port_max": 65535,
+  "log_file": "capture.log"
+}

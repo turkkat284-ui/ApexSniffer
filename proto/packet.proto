@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package apex_sniffer;
+
+import "google/protobuf/timestamp.proto";
+
+// Packet represents a network packet captured by the Rust-core
+// and sent to the Go-analyzer for further processing.
+message Packet {
+    // The raw byte content of the network packet.
+    bytes raw_data = 1;
+
+    // The timestamp when the packet was captured.
+    google.protobuf.Timestamp timestamp = 2;
+
+    // The index of the network interface where the packet was captured.
+    uint32 interface_index = 3;
+
+    // Optional: Packet length for easier verification.
+    uint32 length = 4;
+}
+
+// PacketBatch allows sending multiple packets in a single message
+// to reduce overhead during high-traffic periods.
+message PacketBatch {
+    repeated Packet packets = 1;
+}

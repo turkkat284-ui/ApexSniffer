@@ -1,0 +1,11 @@
+[package]
+name = "Rust-core"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+pcap = "1.1"
+tokio = { version = "1.0", features = ["full"] }
+anyhow = "1.0"
+log = "0.4"
+env_logger = "0.10"
